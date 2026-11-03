@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+coverage/
+*.tsbuildinfo
+
+# Logs & caches
+*.log
+.vite/
+.eslintcache
+
+# Environment files (the app has no server secrets, but keep them out of Git regardless)
+.env
+.env.*
+!.env.example
+
+# Editors & operating systems
+.DS_Store
+Thumbs.db
+.idea/
+*.swp

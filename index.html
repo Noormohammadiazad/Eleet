@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" dir="ltr" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Eleet</title>
+    <meta
+      name="description"
+      content="A zero-server cabinet of secret writing: leet speak, the scytale, Caesar, Enigma, Morse, braille, Base64, AES, steganography and cryptanalysis, with historical dossiers. Everything runs in your browser."
+    />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f8f5f0" />
+    <meta name="referrer" content="no-referrer" />
+    <link rel="canonical" href="https://eleet.ir/" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Eleet" />
+    <meta property="og:url" content="https://eleet.ir/" />
+    <meta property="og:title" content="Eleet" />
+    <meta
+      property="og:description"
+      content="Secret writing, from the scytale to SHA-3: 55 instruments — leet speak, Enigma, Vigenère, Morse, Base64, invisible ink, a cipher cracker — with historical dossiers. Entirely in your browser."
+    />
+    <meta property="og:image" content="https://eleet.ir/social-card.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!--
+      Pre-paint bootstrap: apply the saved (or system) theme and language before
+      the first frame so there is no flash of the wrong theme or text direction.
+      It reads the same localStorage key as src/lib/state/prefs.svelte.ts.
+      The build computes a SHA-256 hash of this script for the CSP.
+    -->
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var prefs = {};
+        try {
+          prefs = JSON.parse(localStorage.getItem('eleet:prefs') || '{}') || {};
+        } catch (e) {}
+        var dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme =
+          prefs.theme === 'light' || prefs.theme === 'dark' ? prefs.theme : dark ? 'dark' : 'light';
+        var languages = navigator.languages || [navigator.language || ''];
+        var persian = false;
+        for (var i = 0; i < languages.length; i++) if (/^fa\b/i.test(languages[i])) persian = true;
+        var locale =
+          prefs.locale === 'fa' || prefs.locale === 'en' ? prefs.locale : persian ? 'fa' : 'en';
+        root.setAttribute('data-theme', theme);
+        root.setAttribute('lang', locale);
+        root.setAttribute('dir', locale === 'fa' ? 'rtl' : 'ltr');
+      })();
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p style="padding: 2rem; font-family: system-ui, sans-serif">
+        Eleet runs entirely in your browser and needs JavaScript to work. / برای اجرای Eleet باید
+        جاوااسکریپت فعال باشد.
+      </p>
+    </noscript>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

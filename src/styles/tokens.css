@@ -1,0 +1,171 @@
+/*
+ * Eleet design tokens — the "Archive" design language.
+ *
+ * Light mode is a reading room: warm folio paper, iron-gall ink, Prussian-blue
+ * for everything you can act on, and vermilion rubrication — the red that
+ * scribes used for headings and numerals — for catalogue marks. Dark mode is
+ * the same archive after hours: lamp-black paper and pale lapis.
+ *
+ * Colours are OKLCH so lightness steps are perceptually even and both themes
+ * share one hue system. Every text colour clears WCAG AA (4.5:1) on every
+ * surface; form-control borders clear 3:1. Layout uses logical properties
+ * (inline/block) so the whole interface mirrors for right-to-left languages.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Paper */
+  --bg: oklch(0.972 0.008 85);
+  --surface-1: oklch(0.988 0.005 85);
+  --surface-2: oklch(0.952 0.009 85);
+  --surface-3: oklch(0.925 0.011 85);
+  --overlay: oklch(0.2 0.01 60 / 0.42);
+
+  /* Rules */
+  --border: oklch(0.87 0.012 85);
+  --border-strong: oklch(0.64 0.014 80);
+
+  /* Ink */
+  --text: oklch(0.22 0.012 60);
+  --text-2: oklch(0.4 0.012 60);
+  --text-3: oklch(0.5 0.013 60);
+
+  /* Prussian blue: links, focus, the active state, primary actions. */
+  --accent: oklch(0.45 0.11 252);
+  --accent-strong: oklch(0.38 0.11 252);
+  --accent-ink: oklch(0.985 0.005 85);
+  --accent-soft: oklch(0.45 0.11 252 / 0.08);
+  --accent-line: oklch(0.45 0.11 252 / 0.35);
+
+  /* Vermilion rubric: catalogue numerals, eras, ornaments. Never a status. */
+  --rubric: oklch(0.53 0.15 35);
+  --rubric-soft: oklch(0.53 0.15 35 / 0.1);
+
+  /* Verdigris: informational marks. */
+  --accent-2: oklch(0.48 0.075 185);
+  --accent-2-soft: oklch(0.48 0.075 185 / 0.1);
+
+  /* Status */
+  --danger: oklch(0.5 0.17 24);
+  --danger-soft: oklch(0.5 0.17 24 / 0.08);
+  --warning: oklch(0.52 0.11 70);
+  --warning-soft: oklch(0.7 0.11 70 / 0.16);
+
+  /* Data visualisation (validated for contrast on each surface) */
+  --chart-1: oklch(0.5 0.1 252);
+  --chart-ref: oklch(0.4 0.012 60);
+  --chart-grid: oklch(0.9 0.01 85);
+
+  /* Elevation is reserved for things that float (dialogs, menus, toasts). */
+  --shadow-1: 0 1px 0 oklch(0.2 0.01 60 / 0.04);
+  --shadow-2: 0 12px 32px -14px oklch(0.2 0.02 60 / 0.28), 0 2px 6px oklch(0.2 0.01 60 / 0.06);
+  --shadow-3: 0 30px 80px -24px oklch(0.2 0.02 60 / 0.4), 0 2px 8px oklch(0.2 0.01 60 / 0.08);
+
+  /* Typography */
+  --font-sans:
+    'Inter Variable', 'Vazirmatn Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif:
+    'Newsreader Variable', 'Noto Naskh Arabic Variable', 'Iowan Old Style', Georgia, serif;
+  --font-mono:
+    'JetBrains Mono Variable', 'Vazirmatn Variable', ui-monospace, 'SFMono-Regular', Menlo,
+    Consolas, monospace;
+  /* Rich fallbacks for Unicode art (math alphanumerics, braille, enclosed characters). */
+  --font-symbols:
+    'JetBrains Mono Variable', 'Vazirmatn Variable', 'Segoe UI Symbol', 'Noto Sans Math',
+    'Noto Sans Symbols 2', 'Cambria Math', 'Apple Symbols', system-ui, sans-serif;
+  --leading: 1.55;
+  --leading-tight: 1.15;
+  --leading-prose: 1.65;
+  --tracking-caps: 0.09em;
+
+  /* A modular scale (≈1.2) for the interface, a wider one for display type. */
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-md: 0.9375rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: clamp(1.875rem, 1.35rem + 1.9vw, 2.625rem);
+  --text-3xl: clamp(2.5rem, 1.5rem + 4vw, 4.75rem);
+  --text-prose: 1.0625rem;
+
+  /* Shape & rhythm: a 4px base, tight radii, generous section spacing. */
+  --radius-sm: 4px;
+  --radius: 6px;
+  --radius-lg: 10px;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4.5rem;
+  --space-9: 7rem;
+
+  /* Layout */
+  --header-h: 3.5rem;
+  --sidebar-w: 16.5rem;
+  --content-max: 86rem;
+  --measure: 66ch;
+
+  /* Motion: quick and physical. */
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.4, 0.64, 1);
+  --fast: 120ms;
+  --normal: 220ms;
+  --slow: 420ms;
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: oklch(0.17 0.006 70);
+  --surface-1: oklch(0.205 0.007 70);
+  --surface-2: oklch(0.235 0.008 70);
+  --surface-3: oklch(0.27 0.009 70);
+  --overlay: oklch(0.06 0.005 70 / 0.66);
+
+  --border: oklch(0.31 0.009 70);
+  --border-strong: oklch(0.5 0.011 70);
+
+  --text: oklch(0.93 0.012 85);
+  --text-2: oklch(0.8 0.012 85);
+  --text-3: oklch(0.68 0.012 85);
+
+  --accent: oklch(0.79 0.085 245);
+  --accent-strong: oklch(0.86 0.075 245);
+  --accent-ink: oklch(0.18 0.02 250);
+  --accent-soft: oklch(0.79 0.085 245 / 0.1);
+  --accent-line: oklch(0.79 0.085 245 / 0.4);
+
+  --rubric: oklch(0.74 0.12 42);
+  --rubric-soft: oklch(0.74 0.12 42 / 0.12);
+
+  --accent-2: oklch(0.78 0.07 185);
+  --accent-2-soft: oklch(0.78 0.07 185 / 0.12);
+
+  --danger: oklch(0.72 0.15 25);
+  --danger-soft: oklch(0.72 0.15 25 / 0.12);
+  --warning: oklch(0.83 0.11 85);
+  --warning-soft: oklch(0.83 0.11 85 / 0.12);
+
+  --chart-1: oklch(0.72 0.09 245);
+  --chart-ref: oklch(0.85 0.012 85);
+  --chart-grid: oklch(0.29 0.009 70);
+
+  --shadow-1: 0 1px 0 oklch(0 0 0 / 0.2);
+  --shadow-2: 0 1px 0 oklch(1 0 0 / 0.03) inset, 0 16px 40px -16px oklch(0 0 0 / 0.75);
+  --shadow-3: 0 1px 0 oklch(1 0 0 / 0.04) inset, 0 40px 100px -24px oklch(0 0 0 / 0.85);
+}
+
+/* Persian: Vazirmatn for the interface, Naskh for display and prose. */
+:root:lang(fa) {
+  --font-sans: 'Vazirmatn Variable', 'Inter Variable', system-ui, sans-serif;
+  --font-serif: 'Noto Naskh Arabic Variable', 'Newsreader Variable', Georgia, serif;
+  --leading: 1.85;
+  --leading-tight: 1.5;
+  --leading-prose: 2;
+  --tracking-caps: 0;
+}
